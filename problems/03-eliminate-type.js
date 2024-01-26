@@ -51,8 +51,42 @@ Hint: Remember Polya's problem solving framework!
 ***********************************************************************/
 
 function eliminateType(arr) {
-  // Your code here 
+  return function (string) {
+    debugger;
+    let copyArr = [];
+    for (let ele of arr) {
+      if (ele === undefined) {
+        copyArr.push(undefined);
+      } else {
+        copyArr.push(JSON.parse(JSON.stringify(ele)));
+      }
+    }
+    for (let ele of copyArr) {
+      if (typeof ele === string) {
+        copyArr.splice(copyArr.indexOf(ele), 1);
+      }
+    }
+    return copyArr;
+  };
 }
+
+// const smallEliminate = eliminateType([1, "one", 2, "two", 3, "three"]);
+// console.log(smallEliminate("number")); // ['one', 'two', 'three']
+// console.log(smallEliminate("string")); // [1, 2, 3]
+
+// const eliminate = eliminateType([
+//   2,
+//   undefined,
+//   "world",
+//   { color: "red" },
+//   true,
+//   3,
+//   [4, 5],
+//   "hello",
+//   false,
+// ]);
+// console.log(eliminate("number")); // [undefined, 'world', { color: 'red' }, true, [4, 5], 'hello', false]
+// // console.log(eliminate("object")); // [2, undefined, 'world', true, 3, 'hello', false]
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
